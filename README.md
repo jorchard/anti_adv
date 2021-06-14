@@ -1,4 +1,4 @@
-# Antiadversarial Networks: Gradients 
+# Anti-Adversarial Networks: Gradients 
 
 This is a WIP package for anti-adversarial network exploration as part of a thesis in Mathematics at the University of Waterloo. This README will be updated as experiments and code progresses
 
@@ -39,3 +39,30 @@ This package contains the Network presets and helper code such as plotting and m
 [Pytorch](https://pytorch.org/) may be configured for CPU or GPU based training/inference, please refer to their [getting-started guide](https://pytorch.org/get-started/locally/) to see how to install torch on your system for use with or without gpu access. 
 
 **Note:** Post-installation `setup` of the adversarial package of cuda 10.2/11.1 has not yet been tested. 
+
+
+# Structure
+
+```
+.
+├── README.md                   # Project Running Instructions and Disambiguation
+├── data                        # Shared Data 
+│   ├── ... 
+├── experiments                 # Individual Experiments 
+│   └── exp_name                # Experiment Structure Template
+│       ├── code
+│       ├── data                # Experiment-unique Data
+│       ├── notebooks
+│       └── scripts
+├── notebooks                   # Example Notebooks
+│   ├── ... 
+├── requirements.txt            # Global/Experiments Requirements
+└── src
+    └── adversarial             # Adversarial Package, pip-installable
+        ├── README.md
+        ├── adversarial
+        ├── ...       
+        ├── pyproject.toml      # Adversarial Package Requirements (auto-installed)
+        ├── setup.py
+        └── tests
+```
