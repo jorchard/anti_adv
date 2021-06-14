@@ -6,3 +6,4 @@ pandas>=1.2.4
 sklearn>=0.24.2
 torch>=1.8.1
 torchvision>=0.9.1
+tqdm>=4.61.1
