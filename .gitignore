@@ -11,3 +11,6 @@ data/
 # Python Egg Distirbution
 __pycache__/
 *.egg-info
+
+# Oddities
+.DS_Store
