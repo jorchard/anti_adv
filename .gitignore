@@ -1,2 +1,16 @@
 # ipynb
 .ipynb_checkpoints
+
+# data files
+data/
+!data/.gitkeep
+
+# VS CODE
+.vscode/
+
+# Python Egg Distirbution
+__pycache__/
+*.egg-info
+
+# Oddities
+.DS_Store
