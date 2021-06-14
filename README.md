@@ -53,6 +53,7 @@ This package contains the Network presets and helper code such as plotting and m
 │       ├── code
 │       ├── data                # Experiment-unique Data
 │       ├── notebooks
+│       ├── results             # Static Results (plots et c)
 │       └── scripts
 ├── notebooks                   # Example Notebooks
 │   ├── ... 
