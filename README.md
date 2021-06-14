@@ -22,8 +22,8 @@ It is highly recommended to use a virtual environment to run any code. This can 
 Most experiments are shown in `experiments/notebooks/*.ipynb`, which can be run using [Jupyter Notebooks](www.jupyter.org)
 
 ```
-(venv) $ pip install -r src/requirements.txt
-(venv) $ pip install -e /src/adversarial
+(venv) $ python -m pip install -r src/requirements.txt
+(venv) $ python -m pip install -e /src/adversarial
 ```
 
 ## Adv package
