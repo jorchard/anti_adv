@@ -29,7 +29,7 @@ class MyNet(nn.Module):
 
         # set device up front
         self.device = device
-        
+
         # Discriminative network
         self.D = nn.ModuleList()
         
@@ -59,9 +59,9 @@ class MyNet(nn.Module):
         self.G.append(nn.Sigmoid())
         
         # Tie the weights of D and G
-        #TODO check if pointer or copy
-        self.G[-2].weight.data = self.D[0].weight.data.transpose(1,0)
-        self.G[-4].weight.data = self.D[2].weight.data.transpose(1,0)
+        # param required b/c ...
+        self.G[-2].weight = torch.nn.Parameter(self.D[0].weight.transpose(1,0))
+        self.G[-4].weight = torch.nn.Parameter(self.D[2].weight.transpose(1,0))
         self.G[-4].bias.data = self.D[0].bias.data
         
         self.classifier_loss = nn.NLLLoss()
