@@ -24,7 +24,8 @@ class MyNet(nn.Module):
     It projects to a latent space.
     From that latent space, it:
      1) projects to an output classification layer (log softmax), and
-     2) projects back down through the network to a reconstruction of the input.
+     2) projects back down through the network to a
+     reconstruction of the input.
 
     """
 
@@ -122,7 +123,8 @@ class MyNet(nn.Module):
 
         Args:
 
-            checkpoints (Boolean|List[int]): if True, save every 10-epochs. if List[int], save each listed epoch.
+            checkpoints (Boolean|List[int]): if True, save every 10-epochs.
+            If List[int], save each listed epoch.
             path (str): optional path to save model checkpoints.
         """
         if optimizer is None:
@@ -170,9 +172,9 @@ class MyNet(nn.Module):
 
         Args:
             epoch (int): Current training epoch.
-            checkpoints (List[int]): list of epochs to save model at. if True, save every 10.model
-            path (str): path to save model.pt, not required if checkpoints is False.
-
+            checkpoints (List[int]): list of epochs to save model at.
+            if True, save every 10.model path (str): path to save
+            model.pt, not required if checkpoints is False.
         """
 
         def save_checkpoint(self, epoch, path):
@@ -220,6 +222,9 @@ class GoodfellowG(nn.Module):
             nn.Tanh(),
         )
 
+        self.recon_loss = nn.BCELoss()
+        self.losses = []
+
     def forward(self, z):
         """Forward pass of generator, taking p(z) noise input.
 
@@ -242,7 +247,8 @@ class GoodfellowG(nn.Module):
             latent_size ): latent space vector, size: batch_size X latent_size
 
         Returns:
-            z, u Tuple[torch.tensor]: batch_size X img_size tensor, and list of zeros as labels
+            z, u Tuple[torch.tensor]: batch_size X img_size tensor,
+            and list of zeros as labels
         """
 
         if latent_dim is None:
@@ -269,6 +275,10 @@ class GoodfellowD(nn.Module):
             nn.Linear(latent_dim, 1),  # [5 , 1]
             nn.Sigmoid(),
         )
+
+        self.classifier_loss = nn.NLLLoss()
+        self.recon_loss = nn.BCELoss()
+        self.losses = []
 
     def forward(self, x):
         """Sequential model forward inference.
@@ -310,6 +320,8 @@ class GoodfellowGAN(nn.Module):
 
         # History
         self.losses = {"G": [], "D": []}
+        self.classifier_loss = nn.NLLLoss()
+        self.recon_loss = nn.BCELoss()
 
         self.to(device)
 
@@ -340,7 +352,8 @@ class GoodfellowGAN(nn.Module):
 
         Args:
 
-            checkpoints (Boolean|List[int]): if True, save every 10-epochs. if List[int], save each listed epoch.
+            checkpoints (Boolean|List[int]): if True, save every 10-epochs.
+            if List[int], save each listed epoch.
             path (str): optional path to save model checkpoints.
         """
         if optimizer is None:
@@ -426,9 +439,9 @@ class GoodfellowGAN(nn.Module):
 
         Args:
             epoch (int): Current training epoch.
-            checkpoints (List[int]): list of epochs to save model at. if True, save every 10.model
-            path (str): path to save model.pt, not required if checkpoints is False.
-
+            checkpoints (List[int]): list of epochs to save model at.
+            if True, save every 10.model path (str): path to save
+            model.pt, not required if checkpoints is False.
         """
 
         def save_checkpoint(self, epoch, path):

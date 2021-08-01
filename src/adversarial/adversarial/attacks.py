@@ -1,9 +1,12 @@
 """ Adversarial Attacks """
 
+import torch
+import torch.nn as nn
+
 from adversarial.networks import MyNet
 
 
-def fgsm(net: MyNet, x, t, eps=0.01, targ=False):
+def fgsm(net, x, t, eps=0.01, targ=False) -> torch.tensor:
     """
     x_adv = FGSM(net, x, t, eps=0.01, targ=False)
 
@@ -36,7 +39,14 @@ def fgsm(net: MyNet, x, t, eps=0.01, targ=False):
     # Feedforward
     y = net(x)
     # Compute loss and propagate gradients
-    loss = net.classifier_loss(y, t)
+    loss = net.classifier_loss(
+        y.reshape(
+            -1,
+        ),
+        t.reshape(
+            -1,
+        ),
+    )
     net.zero_grad()
     loss.backward()
     # The no_grad() is not really necessary
