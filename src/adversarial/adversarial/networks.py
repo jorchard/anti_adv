@@ -404,7 +404,7 @@ class GoodfellowGAN(nn.Module):
             # self.losses.append(total_loss / len(dl.dataset))
             # self.losses["G"].append(g_loss.item() / len(dl.dataset))
             # self.losses["D"].append(d_loss.item() / len(dl.dataset))
-            print(f"Epoch: {epoch}, d_loss: {d_loss.item()}")
+            # print(f"Epoch: {epoch}, d_loss: {d_loss.item()}")
             if checkpoints:
                 self.losses["G"].append(g_loss.item())
                 self.losses["D"].append(d_loss.item())
